@@ -111,4 +111,24 @@ public class Servizi {
 	}
 	
 	
+	/// ELIMINA CLIENTE
+	public boolean eliminaCliente(String nome, String cognome){
+		
+		boolean eliminato = false;
+		
+		eliminato = cDao.eliminaCliente(nome, cognome);
+		return eliminato;
+		
+	}
+	
+
+	/// ELIMINA DIPENDENTE
+	public boolean eliminaDipendente(String nome, String cognome){
+			
+		boolean eliminato = false;
+		
+		eliminato = dDao.eliminaDipendente(nome, cognome);
+		return eliminato;	
+	}
+	
 }

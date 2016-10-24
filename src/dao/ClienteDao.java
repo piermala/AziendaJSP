@@ -108,8 +108,41 @@ public class ClienteDao {
 		return c;
 	}
 	
-	/// MODIFICA
 	
 	
 	/// ELIMINA
+	public boolean eliminaCliente(String nome, String cognome){
+		
+		Session session = HibernateUtil.openSession();		
+		Transaction tx = null;
+	
+		boolean eliminato = false;				
+			
+		try {
+				
+			tx = session.getTransaction();
+				
+			tx.begin(); 			
+				
+			Query query = session.createQuery("delete from ClienteBean where nome=:nome AND cognome=:cognome");
+			query.setString("nome", nome);
+			query.setString("cognome", cognome);
+				
+			int result = query.executeUpdate();
+			
+			if (result > 0){
+				eliminato = true;
+			}
+			
+			tx.commit();	
+				
+		} catch (Exception ex){
+			tx.rollback();
+		} finally {
+			session.close();
+		}				
+		
+		return eliminato;
+	}
+	
 }
